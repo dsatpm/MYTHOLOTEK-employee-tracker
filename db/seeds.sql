@@ -13,7 +13,7 @@ INSERT INTO role (id, title, salary, department_id)
 VALUES 
   (001, 'Dragon Wrangler', 75000, 2),
   (002, 'Mermaid Specialist', 80000, 6),
-  (003, 'Phoenix Flame Coordinator', 70000, 4),
+  (003, 'Phoenix Egg Coordinator', 70000, 4),
   (004, 'Labyrinth Designer', 85000, 4),
   (005, 'Centaur Relations', 60000, 2),
   (006, 'Griffin Nest Architect', 90000, 1),
