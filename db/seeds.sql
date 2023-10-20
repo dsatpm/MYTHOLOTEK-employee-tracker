@@ -30,17 +30,17 @@ VALUES
 -- Gives employees first and last name, a role id, and a manager id (if applicable) -- 
 INSERT INTO employee (id, first_name, last_name, role_id, manager_id)
 VALUES 
-  (001, 'Bobbles', 'Whimsykins', 1, NULL),
+  (001, 'Kayla', 'Whimsykins', 1, NULL),
   (002, 'Giggles', 'Noodlebounce', 1, NULL),
   (003, 'Squiggles', 'Flapdoodle', 2, 1),
   (004, 'Cheeseburger', 'Wobblewhiz', 2, 1),
   (005, 'Snickerdoodle', 'Muffintop', 3, 2),
-  (006, 'Sprinkle', 'Marshmallowfluff', 3, NULL),
+  (006, 'Bailey', 'Marshmallowfluff', 3, NULL),
   (007, 'Twinkletoes', 'Wobblegiggle', 4, 3),
   (008, 'Dizzy', 'Bananapop', 4, 3),
   (009, 'Snoozer', 'Lollygaggle', 5, 4),
   (010, 'Gigglepop', 'Squigglebop', 5, 4),
-  (011, 'Sillibobble', 'Picklepants', 6, NULL),
+  (011, 'Olive', 'Picklepants', 6, NULL),
   (012, 'Snoozer', 'Flippityflop', 6, 5),
   (013, 'Bellyflop', 'Noodlepop', 7, NULL),
   (014, 'Picklepants', 'Bellywobble', 7, 6),
