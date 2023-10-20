@@ -1,32 +1,10 @@
 
-
-// Console header
-const header = `
-███╗   ███╗██╗   ██╗████████╗██╗  ██╗ ██████╗ ██╗      ██████╗    ████████╗███████╗ ██████╗██╗  ██╗    
-████╗ ████║╚██╗ ██╔╝╚══██╔══╝██║  ██║██╔═══██╗██║     ██╔═══██╗   ╚══██╔══╝██╔════╝██╔════╝██║ ██╔╝    
-██╔████╔██║ ╚████╔╝    ██║   ███████║██║   ██║██║     ██║   ██║█████╗██║   █████╗  ██║     █████╔╝     
-██║╚██╔╝██║  ╚██╔╝     ██║   ██╔══██║██║   ██║██║     ██║   ██║╚════╝██║   ██╔══╝  ██║     ██╔═██╗     
-██║ ╚═╝ ██║   ██║      ██║   ██║  ██║╚██████╔╝███████╗╚██████╔╝      ██║   ███████╗╚██████╗██║  ██╗    
-╚═╝     ╚═╝   ╚═╝      ╚═╝   ╚═╝  ╚═╝ ╚═════╝ ╚══════╝ ╚═════╝       ╚═╝   ╚══════╝ ╚═════╝╚═╝  ╚═╝    
-██╗███╗   ██╗ ██████╗ ██████╗ ██████╗ ██████╗  ██████╗ ██████╗  █████╗ ████████╗███████╗██████╗        
-██║████╗  ██║██╔════╝██╔═══██╗██╔══██╗██╔══██╗██╔═══██╗██╔══██╗██╔══██╗╚══██╔══╝██╔════╝██╔══██╗       
-██║██╔██╗ ██║██║     ██║   ██║██████╔╝██████╔╝██║   ██║██████╔╝███████║   ██║   █████╗  ██║  ██║       
-██║██║╚██╗██║██║     ██║   ██║██╔══██╗██╔═══╝ ██║   ██║██╔══██╗██╔══██║   ██║   ██╔══╝  ██║  ██║       
-██║██║ ╚████║╚██████╗╚██████╔╝██║  ██║██║     ╚██████╔╝██║  ██║██║  ██║   ██║   ███████╗██████╔╝▄█╗    
-╚═╝╚═╝  ╚═══╝ ╚═════╝ ╚═════╝ ╚═╝  ╚═╝╚═╝      ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝   ╚═╝   ╚══════╝╚═════╝ ╚═╝    
-██╗███╗   ██╗ ██████╗                                                                                  
-██║████╗  ██║██╔════╝                                                                                  
-██║██╔██╗ ██║██║                                                                                       
-██║██║╚██╗██║██║                                                                                       
-██║██║ ╚████║╚██████╗██╗                                                                               
-╚═╝╚═╝  ╚═══╝ ╚═════╝╚═╝`;   
-
-
 // Imports necessary programs
 // Declares port and initiates Express.js
 const inquirer = require('inquirer');
 const express = require('express');
 const mysql = require('mysql2');
+const cfonts = require('cfonts');
 const app = express();
 const PORT = 3001;
 
@@ -102,8 +80,21 @@ const menuPrompt = {
   }
 
   function runProgram() {
-    console.log(header);
-    console.log('Welcome to the Employee Manager at Mytholo-Teck Incorporated, Inc. database!');
+    cfonts.say('Mytholo-Teck|Incorporated,|Inc.', {
+      font: 'slick',
+      align: 'center',
+      colors: ['greenBright', 'gray'],
+      background: 'transparent',
+      env: 'node'
+    });
+
+    cfonts.say('Welcome to the Employee Manager Database\!', {
+      font: 'chrome',
+      align: 'center',
+      colors: ['greenBright', 'blueBright', 'gray'],
+      background: 'transparent',
+      env: 'node'
+    });
     mainMenu();
   }
 
