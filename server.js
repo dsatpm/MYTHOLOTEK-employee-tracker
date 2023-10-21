@@ -241,29 +241,46 @@ function addEmployee() {
 
 // Updates employee information
 function updateEmployee() {
-	inquirer
-		.prompt([
-			{
-				type: 'input',
-				name: 'name',
-				message: "Enter the employee's new role",
-			},
-		])
-		.then((res) => {
-			connection
-				.promise()
-				.execute('UPDATE employee SET role_id = ? WHERE id = ?', [
-					res.newRole,
-					res.employeeId,
-				]);
-		})
-		.then(() => {
-			console.log('Employee role successfully updated!');
-			mainMenu();
-		})
-		.catch((error) => {
-			console.error('Error:', error);
-			return;
+	connection
+		.promise()
+		.query('SELECT id, title FROM role')
+		.then(([roles]) => {
+			// Map the roles
+			const roleChoices = roles.map((role) => ({
+				name: role.title,
+				value: role.id,
+			}));
+
+			inquirer
+				.prompt([
+					{
+						type: 'input',
+						name: 'employeeId',
+						message: 'Enter the ID of the employee being updated',
+					},
+					{
+						type: 'list',
+						name: 'newRole',
+						message: 'What is the new job title for this employee?',
+						choices: roleChoices,
+					},
+				])
+				.then((res) => {
+					connection
+						.promise()
+						.execute(
+							'UPDATE employee SET role_id = ? WHERE id = ?',
+							[res.newRole, res.employeeId]
+						)
+						.then(() => {
+							console.log('Employee role successfully updated!');
+							mainMenu();
+						})
+						.catch((error) => {
+							console.error('Error:', error);
+							return;
+						});
+				});
 		});
 }
 
