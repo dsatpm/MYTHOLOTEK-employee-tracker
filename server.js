@@ -55,7 +55,7 @@ function action(req) {
 			);
 			break;
 		case 'View Roles':
-			runQuery('SELECT id AS RoleID, title AS JobTitle FROM role');
+			runQuery('SELECT role.title AS JobTitle, role.id AS RoleID, department.name AS Department, role.salary FROM role JOIN department ON role.department_id = department.id');
 			break;
 		case 'View Employees':
 			runQuery(
