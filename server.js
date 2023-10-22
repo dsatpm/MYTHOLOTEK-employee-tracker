@@ -1,11 +1,7 @@
 // Imports necessary programs
-// Declares port and initiates Express.js
 const inquirer = require('inquirer');
-const express = require('express');
 const mysql = require('mysql2');
 const cfonts = require('cfonts');
-const app = express();
-const PORT = 3001;
 
 // Connect to local host and database
 const connection = mysql.createConnection({
@@ -22,11 +18,6 @@ connection.connect((err) => {
 		return;
 	}
 	console.log('Connected to database');
-});
-
-// Initiates Express.js to desired port
-app.listen(PORT, () => {
-	console.log(`Server listening on port ${PORT}`);
 });
 
 // Inquirer menu and selection options
@@ -46,7 +37,7 @@ const menuPrompt = {
 	],
 };
 
-// Allows user to view tables of selected option from menu
+// Displays information from database depending on user selection
 function action(req) {
 	switch (req) {
 		case 'View Departments':
@@ -81,7 +72,7 @@ function action(req) {
 	}
 }
 
-// Adds new department to database
+// Prompt to for adding new department
 function addDepartment() {
 	inquirer
 		.prompt([
@@ -92,6 +83,7 @@ function addDepartment() {
 			},
 		])
 		.then((res) => {
+      // Inserts department into database
 			connection
 				.promise()
 				.execute('INSERT INTO department (name) VALUES (?)', [
@@ -108,7 +100,7 @@ function addDepartment() {
 		});
 }
 
-// Adds new employee role to database
+// Prompts for adding new role to database
 function addRole() {
 	connection
 		.promise()
@@ -143,6 +135,7 @@ function addRole() {
 					},
 				])
 				.then((res) => {
+          // Inserts new role into role database
 					connection
 						.promise()
 						.execute(
@@ -156,14 +149,11 @@ function addRole() {
 						.catch((error) => {
 							console.error('Error', error);
 						});
-				});
-		})
-		.catch((error) => {
-			console.error('Error', error);
-		});
+          });
+      })
 }
 
-// Adds new employee to employee database
+// Prompt to add new employee to database
 function addEmployee() {
 	connection
 		.promise()
@@ -214,6 +204,7 @@ function addEmployee() {
 					}
 
 					const roleId = chosenRole.id;
+          // Inserts new employee into employee database
 					connection
 						.promise()
 						.execute(
@@ -239,7 +230,7 @@ function addEmployee() {
 		});
 }
 
-// Updates employee information
+// Prompt to update current employee data
 function updateEmployee() {
 	connection
 		.promise()
@@ -266,6 +257,7 @@ function updateEmployee() {
 					},
 				])
 				.then((res) => {
+          // Updates employee data
 					connection
 						.promise()
 						.execute(
@@ -284,29 +276,26 @@ function updateEmployee() {
 		});
 }
 
-// Queries the database and returns results
+// Queries the database for viewing departments
 function runQuery(req) {
 	connection
 		.promise()
 		.query(req)
 		.then(([results, fields]) => {
 			console.table(results);
-
-			inquirer
-				.prompt(menuPrompt)
-				.then((answers) => action(answers.action));
+      mainMenu();
 		})
 		.catch((error) => {
 			console.error('Error:', error);
 		});
 }
 
-// Displays the main menu
+// Displays the prompt menu
 function mainMenu() {
 	inquirer.prompt(menuPrompt).then((answers) => action(answers.action));
 }
 
-// Runs 'Employee Database' program, initializes ASCII logo and sub-logo
+// Runs 'Employee Database' program, initializes ASCII logo header and sub-header
 function runProgram() {
 	cfonts.say('Mytholo-Teck|Incorporated,|Inc.', {
 		font: 'slick',

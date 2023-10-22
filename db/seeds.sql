@@ -1,4 +1,4 @@
--- Inserts unique IDs and name of department into 'department' table -- 
+-- Inserts name of department into 'department' table -- 
 INSERT INTO department (name)
 VALUES 
   ('Whimsical Inventions'),
@@ -8,7 +8,7 @@ VALUES
   ('Quantum Banana Splitting'),
   ('Underwater Basket Weaving');
 
--- Inserts unique IDs ad titles of roles with salary into 'role' table --
+-- Inserts titles of role with salary and department role belongs to into 'role' table --
 INSERT INTO role (title, salary, department_id)
 VALUES 
   ('Dragon Wrangler', 75000, 2),
