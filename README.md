@@ -1,4 +1,4 @@
-# Employee Tracker
+# Employee Tracker with mySQL
 
 mySQL database that allows the user to add a department, a role within the company, a new employee, or update a current employees information which is stored in a mySQL database. This project was very challenging to complete. I did use ChatGPT to come up with mythical job titles, departments, and a short list of made-up employees. Otherwise, this project is a demonstration of how to use mySQL to organize and edit data.
 
