@@ -29,10 +29,14 @@ const menuPrompt = {
 		'View Departments',
 		'View Roles',
 		'View Employees',
+    'View Employees by Department',
 		'Add Department',
+    'Remove Department',
 		'Add Role',
+    'Remove Role',
 		'Add Employee',
 		'Update Employee Role',
+    'Remove Employee',
 		'Exit',
 	],
 };
@@ -65,6 +69,18 @@ function action(req) {
 		case 'Update Employee Role':
 			updateEmployee();
 			break;
+    case 'View By Department':
+      viewByDepartment();
+      break;
+    case 'Remove Department':
+      deleteDepartment();
+      break;
+    case 'Remove Job Title':
+      deleteRole();
+      break;
+    case 'Remove Employee':
+      deleteEmployee();
+      break;
 		case 'Exit':
 			console.log('Goodbye!');
 			connection.end();
@@ -96,8 +112,54 @@ function addDepartment() {
 		})
 		.catch((error) => {
 			console.log('Error', error);
-			return;
+			mainMenu();
 		});
+}
+
+function viewByDepartment() {
+  inquirer
+  .prompt([
+    {
+      type: 'input',
+      name: 'departmentId',
+      message: 'Enter ID of the department to list all employees within selected department',
+    },
+  ])
+  .then((res) => {
+    const departmentId = res.departmentId;
+    connection.promise().query('SELECT * FROM employee WHERE department_id = ?', [departmentId])
+  })
+  .then(([employeesByDept]) => {
+    console.table(employeesByDept);
+    mainMenu();
+  })
+  .catch((error) => {
+    console.error('Error', error);
+    mainMenu();
+  });
+}
+
+function deleteDepartment() {
+  inquirer
+  .prompt([
+    {
+      type: 'input',
+      name: 'departmentId',
+      message: 'Enter the ID of the department to delete',
+    },
+  ])
+  .then((deleteDepartment) => {
+    const departmentId = deleteDepartment.departmentId;
+    connection.promise().execute('DELETE FROM department WHERE id = ?', [departmentId])
+  })
+  .then(() => {
+    console.log('Department removed successfully!');
+    mainMenu();
+  })
+  .catch((error) => {
+    console.error('Error:', error);
+    mainMenu();
+  })
 }
 
 // Prompts for adding new role to database
@@ -148,9 +210,33 @@ function addRole() {
 						})
 						.catch((error) => {
 							console.error('Error', error);
+              mainMenu();
 						});
           });
       })
+}
+
+function deleteRole() {
+  inquirer
+  .prompt([
+    {
+      type: 'input',
+      name: 'roleId',
+      message: 'Enter ID of the Job Title to delete',
+    },
+  ])
+  .then((deleteRole) => {
+    const roleId = deleteRole.roleId;
+    connection.promise().execute('DELETE FROM role WHERE id = ?', [roleId])
+  })
+  .then(() => {
+    console.log('Removed role successfully!');
+    mainMenu();
+  })
+  .catch((error) => {
+    console.error('Error', error);
+    mainMenu();
+  });
 }
 
 // Prompt to add new employee to database
@@ -222,12 +308,10 @@ function addEmployee() {
 						})
 						.catch((error) => {
 							console.error('Error:', error);
+              mainMenu();
 						});
 				});
-		})
-		.catch((error) => {
-			console.error('Error:', error);
-		});
+      })
 }
 
 // Prompt to update current employee data
@@ -270,10 +354,34 @@ function updateEmployee() {
 						})
 						.catch((error) => {
 							console.error('Error:', error);
-							return;
+							mainMenu();
 						});
 				});
 		});
+}
+
+function deleteEmployee() {
+  inquirer
+  .prompt([
+    {
+      type: 'input',
+      name: 'employeeId',
+      message: 'Enter ID of employee to remove',
+    },
+  ])
+  .then((removeEmployee) => {
+    const employeeId = removeEmployee.employeeId;
+    connection.promise().execute('DELETE FROM employee WHERE id = ?', [employeeId])
+  })
+  .then(() => {
+    console.log('Employee successfully removed!');
+    mainMenu();
+  })
+  .catch((error) => {
+    console.error('Error', error);
+    mainMenu();
+  });
+
 }
 
 // Queries the database for viewing departments
@@ -287,6 +395,7 @@ function runQuery(req) {
 		})
 		.catch((error) => {
 			console.error('Error:', error);
+      mainMenu();
 		});
 }
 
