@@ -1,23 +1,30 @@
 # Employee Tracker with mySQL
+<p align='center'>
+<img src='./assets/mytholotek-screenshot.png' alt='Employee Tracker Logo'>
+</p>
 
-mySQL database that allows the user to add a department, a role within the company, a new employee, or update a current employees information which is stored in a mySQL database. This project was very challenging to complete. I did use ChatGPT to come up with mythical job titles, departments, and a short list of made-up employees. Otherwise, this project is a demonstration of how to use mySQL to organize and edit data.
+## Overview
+
+Welcome to the Employee Tracker with MySQL—a robust solution for organizing and managing company data. This mySQL database empowers users to add departments, roles, and employees, as well as update employee information seamlessly. While challenging, this project serves as a demonstration of effective data organization and manipulation using mySQL.
 
 
 ## Installation
 
-This application requires the use of Node.js. To install Node.js, refer to [this](https://nodejs.dev/en/learn/how-to-install-nodejs/) documentation. All of the functionality of the program is within the console or terminal of your machine. 
+Ensure you have Node.js installed on your machine. If not, refer to [this](https://nodejs.dev/en/learn/how-to-install-nodejs/) documentation. The application's functionality is accessed through your machine's console or terminal.
 
 
 ## Usage
 
-The application is an example of how to use and manage a database of information. It is an incredibly powerful tool when dealing with a lot of data. [Here](https://drive.google.com/file/d/16OA3Wm7n1TzKn5nqhqbO2Ti_JunAb91O/view) is a video demonstration of the project in action.
+This application showcases effective database management, offering a powerful tool for handling large datasets. For a detailed walkthrough, check out the [video demo](https://drive.google.com/file/d/16OA3Wm7n1TzKn5nqhqbO2Ti_JunAb91O/view).
 
 
 ## Credits
 
-This program was created by [me](https://github.com/dsatpm), but I did use a few outside sources for some of the data within the database
-  - [ChatGPT](https://chat.openai.com) provided the generated names of jobs, departments, and some of the names in the employee database.
+This program was created by [me](https://github.com/dsatpm). While the core concept and execution are original, external sources played a role in enhancing the database content and addressing syntax-related challenges.
 
-### Additional Sources
-  - [mySQL](https://npmjs.com/package/mysql2) documentation to learn proper syntax, as well as references and pulling information from one table to another. It was also very helpful to understand 'promises' and 'executing'
-  - [ChatGPT](https://chat.openai.com) for parsing through syntax errors and some bugs
+### - Generated Data
+[ChatGPT](https://chat.openai.com) contributed by generating names for job titles, departments, and some employee names.
+
+## Additional Sources
+  - [mySQL Documentation](https://npmjs.com/package/mysql2): Referenced mySQL documentation for proper syntax, understanding references, and pulling information between tables. The documentation proved crucial for mastering 'promises' and 'executing' queries.
+  - [Syntax Assistance](https://chat.openai.com): ChatGPT provided valuable support in parsing through syntax errors and addressing bugs during the development process.
