@@ -7,7 +7,7 @@ const cfonts = require('cfonts');
 const connection = mysql.createConnection({
 	host: 'localhost',
 	user: 'root',
-	password: 'Gorenotcore1',
+	password: '',
 	database: 'employees_db',
 });
 
